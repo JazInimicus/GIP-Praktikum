@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char eingabe = 0;
+	int anzahl = 0, summe = 0, durchschnitt = 0, klein = 1, gross = 100; 
+
+	cout << "Merken Sie sich eine Zahl zwischen 1 (inklusive) und 100 (exklusive)" << endl << endl;
+
+	
+	for (; ;)
+	{
+		for (int i = klein; i <= gross; i++)
+		{
+			summe = summe + i;
+			anzahl++;
+		}
+		durchschnitt = summe / anzahl; //durchschnitt = klein + gross / 2
+		summe = 0;
+		anzahl = 0;
+
+			cout << "Der aktuelle Wertebereich: " << klein << " und " << gross;
+			cout << endl;
+			cout << "Ist " << durchschnitt << " ihre Zahl?\n";
+			cout << "(j) ja: gleich\n";
+			cout << "(k) nein: kleiner\n";
+			cout << "(g) nein: groesser\n";
+
+			cin >> eingabe;
+
+			if (eingabe == 'j')
+			{
+				break;
+			}
+
+			else if (eingabe == 'k')
+			{
+				gross = durchschnitt;
+			}
+
+			else if (eingabe == 'g')
+			{
+				klein = durchschnitt;
+			}
+	}
+
+
+	system("PAUSE");
+	return 0;
+}
