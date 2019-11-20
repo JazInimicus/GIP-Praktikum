@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double fahrenheit = 0.0;
+	double celsius = 0.0;
+
+	cout << "Bitte geben Sie die Temperatur in Grad Celsius an: ? ";
+	cin >> celsius;
+
+	fahrenheit = celsius * 1.8 + 32;
+
+	cout << "Die Temperatur in Fahrenheit lautet: " << fahrenheit << endl;
+
+	system("PAUSE");
+	return 0;
+}
