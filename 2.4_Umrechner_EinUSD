@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double dollar = 0.0;
+	double euro = 0.0;
+
+	cout << "Bitte geben Sie die Geldmenge in Euro an: ? ";
+	cin >> euro;
+
+	dollar = euro * 1.2957;
+
+	cout << "Die Geldmenge in US Dollar lauter:" << dollar << endl;
+
+	system("PAUSE");
+	return 0;
+}
