@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char nummer1 = 0, nummer2 = 0;
+
+	cout << "Bitte geben Sie die erste Ziffer ein: ";
+	cin >> nummer1;
+
+	cout << "Bitte geben Sie die zweite Ziffer ein: ";
+	cin >> nummer2;
+
+	if (nummer1 == 'q')
+	{
+		cout << "Das Programm wurde durch Eingabe von q beendet.";
+	}
+
+	else if (nummer2 == 'q')
+	{
+		cout << "Das Programm wurde durch Eingabe von q beendet.";
+	}
+	
+	else if (nummer1 != 'q' && nummer2 != 'q')
+	{
+		cout << int(nummer1) - int('0') << "+" << int(nummer2) - int('0') << "=" << int(nummer1) - int('0') + int(nummer2) - int('0');
+	}
+
+	cout << endl;
+
+	system("PAUSE");
+	return 0;
+}
