@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double input = 0.0;
+	int auswahl = 0;
+	double ergebnis = 0.0;
+
+	cout << "Ihre Eingabe: ? ";
+	cin >> input; 
+	cout << endl << endl;
+
+	cout << "Ihre Auswahl der Umwandlung: " << endl;
+	cout << "1 - Celsius in Fahrenheit" << endl;
+	cout << "2 - Meter in Fuss" << endl;
+	cout << "3 - Euro in Dollar" << endl;
+
+	cin >> auswahl;
+
+	double fahrenheit = input * 1.8 + 32;
+	double fuss = input * 3.2808;
+	double dollar = input * 1.2957;
+
+	ergebnis = int(1 / auswahl) * fahrenheit + (auswahl - 1) % 2 * fuss + int(auswahl / 3) * dollar;
+
+	cout << "Das Ergebnis lautet: " << ergebnis << endl << endl;
+
+	system("PAUSE");
+	return 0;
+ }
