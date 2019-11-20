@@ -1,0 +1,47 @@
+#include "wortspiegel.h"
+#include <string>
+using namespace std;
+
+void wortspiegel(string& text, int pos)
+{
+	int start = 0, ende = 0, spo = 0; //Position Stern/Auswahl
+	string temp = "";
+
+	//Nur ausführen, wenn keine Satzzeichen in auswahl sind
+	if (text.at(pos) != ' ' && text.at(pos) != '.' && text.at(pos) != ',' && text.at(pos) != '!' && text.at(pos) != '?')
+	{
+		spo = pos;
+
+		while (spo > 0)
+		{
+			//Anfang vom Wort finden
+			if (text.at(spo) == ' ' || text.at(spo) == '.' || text.at(spo) == ',' || text.at(spo) == '!' || text.at(spo) == '?')
+			{
+				spo++; break;
+			}
+			spo--; //solange nach links bis Anfang gefunden (falls Satzzeichen eins nach rechts und break)
+		}
+
+		start = spo; //Anfang vom Wort
+		spo = pos; //ZUrücksetzen
+
+		while (spo < text.size() - 1)
+		{
+			if (text.at(spo) == ' ' || text.at(spo) == '.' || text.at(spo) == ',' || text.at(spo) == '!' || text.at(spo) == '?')
+			{
+				spo--; break;
+			}
+			spo++;
+		}
+		ende = spo; //Ende vom Wort (s.o)
+
+		for (int i = 0; i <= ende - start; i++) //Für Wortlänge
+		{
+			temp = text.at(start + i) + temp; //Spiegeln, Wort hinten dran, Buchstabe vorne
+		}
+		for (int i = 0; i <= ende - start; i++)
+		{
+			text.at(start + i) = temp.at(i); // Ausgabe des Eingangs
+		}
+	}
+}
