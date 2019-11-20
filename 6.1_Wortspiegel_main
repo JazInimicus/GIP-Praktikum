@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include "wortspiegel.h"
+using namespace std;
+
+int main()
+{
+	string text;
+	char auswahl;
+	int position = 0;
+
+	cout << "Bitte geben Sie den Text ein: ? ";
+	getline(cin, text);
+
+	do
+	{
+		cout << text << endl; //Derzeitiger Satz
+
+		for (int i = 0; i < position; i++) //Ausgabe der Position vom Stern
+		{
+			cout << " ";
+		}
+		cout << "*" << endl;
+
+		cout << "Befehl (l: links, r: rechts, s: spiegeln, q: Ende ?- "; //Befehl eingabe
+		cin >> auswahl;
+		//Befehle deklarieren was sie zu tun haben
+		if (auswahl == 'l' && position > 0) { position--; }
+		else if (auswahl == 'r' && position < text.length() - 1) { position++; } //Anfang bei Null
+		else if (auswahl == 's') { wortspiegel(text, position); } //gibt text, position und wortspiegel
+	} while (auswahl != 'q');
+
+	system("PAUSE");
+	return 0;
+}
