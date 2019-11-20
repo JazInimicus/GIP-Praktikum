@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double eingabe = 0, letzte1 = 0, letzte2 = 0, gesamt = 0, durch = 0;
+	
+	while(true) //Endlosschleife
+	{
+		do // Der Definitionsbereich
+		{
+			cout << "Bitte geben Sie den letzten Verbrauchswert ein: ";
+			cin >> eingabe;
+		} while (eingabe < 0 || eingabe > 100);
+
+		if (eingabe == 0) //Bei Eingabe von 0 beenden
+		{
+			break;
+		}
+
+		
+		gesamt = gesamt + eingabe;
+		durch = (eingabe + letzte1 + letzte2) / 3;
+		cout << "Der bisherige Gesamtverbraucht: " << gesamt << endl;
+		cout << "Der Durchschnitt der letzten drei Verbrauchswerte betraegt: " << durch << endl;
+		
+		// Damit die Werte aufrücken, da nur eingabe sich immer ändert
+		letzte2 = letzte1;
+		letzte1 = eingabe;
+	}
+
+	system("PAUSE");
+	return 0;
+}
