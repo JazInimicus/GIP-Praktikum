@@ -1,0 +1,97 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	bool gul = true;
+	int sudoku[9][9] = { 0 };
+	string eingabe[11];
+
+	cout << "Bitte geben Sie das Sudoku ein: " << endl;
+
+	for (int i = 0; i < 11; i++) //Eingabe des Sudokus. Maximal 11 Reihen. Zur Vereinfachung Sudoku von unten nehmen
+	{
+		getline(cin, eingabe[i]);
+	}
+
+	//Konvertierung 
+	int kon = 0;
+	for (int i = 0, y = 0; i < 11; i++)  //Zeilen
+	{
+		if (i == 3 || i == 7) continue; //ansonsten wird in den nächsten Zeilen immer 0 angezeigt
+
+		for (int j = 0, x = 0; j < eingabe[i].length(); j++) //j darf nicht länger als die gesamte Zeile i sein | Spalten
+		{
+			kon = int(eingabe[i].at(j) - '0'); //z.B. 9 ASCII Wert 57 - 48(ASCII 0) = (int) 9 || j geht die Positionen durch
+			if (kon >= 1 && kon <= 9) //Wertebereich
+			{
+				sudoku[x][y] = kon; //damit kon wieder frei ist, für den nächsten Durchlauf, in sudoku einspeichern
+				x++; //Nächste Position zum Speichern von der Spalte
+			}
+		}
+		y++; //Nächste Zeile
+	}
+
+	//Ausgabe
+	
+	for (int x = 0; x < 9; x++)
+	{
+		int spalten[9] = { 0 };
+		for (int y = 0; y < 9; y++) //Läuft die Spalten ab
+		{
+			spalten[sudoku[x][y] - 1]++;
+		}
+		for (int i = 0; i < 9; i++) //Überprüft welche Spalten richtig sind
+		{
+			if (spalten[i] > 1) { cout << "Spalte " << x << ": Zahl " << i + 1 << " kommt mehrfach vor\n"; gul = false; }
+			else if (spalten[i] == 0) { cout << "Spalte " << x << ": Zahl " << i + 1 << " kommt nicht vor\n"; gul = false;
+			}
+		}
+	}
+			
+	for (int y = 0; y < 9; y++)
+	{
+		int zeilen[9] = { 0 };
+		for (int x = 0; x < 9; x++) //Läuft die Zeilen ab
+		{
+			zeilen[sudoku[x][y] - 1]++;
+		}
+		for (int i = 0; i < 9; i++) //Überprüft welche Zeilen richtig sind
+		{
+			if (zeilen[i] > 1) { cout << "Zeile " << y << ": Zahl " << i + 1 << " kommt mehrfach vor\n"; gul = false;
+			}
+			else if (zeilen[i] == 0) { cout << "Zeile " << y << ": Zahl " << i +1 << " kommt nicht vor\n"; gul = false;
+			}
+		}
+	}
+	
+	
+
+	for (int blocks = 0; blocks < 9; blocks++)
+	{
+		int block[9] = { 0 };
+
+		for (int y = blocks / 3 * 3; y <= blocks / 3 * 3 + 2; ++y)
+		{
+			for (int x = blocks % 3 * 3; x <= blocks % 3 * 3 + 2; ++x)
+			{
+				++block[sudoku[x][y] - 1];
+			}
+		}
+
+		for (int i = 0; i < 9; i++) //Überprüft welche Blöcke richtig sind
+		{
+			if (block[i] > 1) { cout << "Block " << blocks << ": Zahl " << i + 1 << " kommt mehrfach vor\n"; gul = false;
+			}
+			else if (block[i] == 0) { cout << "Block " << blocks << ": Zahl " << i + 1 << " kommt nicht vor\n"; gul = false;
+			}
+		}
+	}
+
+	if (gul == true) { cout << "Das Sudoku ist gueltig.\n"; }
+
+	system("PAUSE");
+	return 0;
+}
+
