@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	int stunden = 0, minuten = 0, takt = 0, vorher = 0, letzte = 0;
+
+	do
+	{
+		cout << "Bitte geben Sie die Stunden der Startuhrzeit ein: ";
+		cin >> stunden;
+	} while (stunden < 0 || stunden > 23);
+
+	do
+	{
+		cout << "Bitte geben Sie die Minuten der Startuhrzeit ein: ";
+		cin >> minuten;
+	} while (minuten < 0 || minuten > 59);
+
+	cout << "Der erste Bus faehrt also um: " << stunden << ":" << minuten << " Uhr.\n";
+
+	vorher = minuten + stunden * 60;
+
+	do
+	{
+		cout << "Bitte geben Sie die Taktzeit in Minuten ein: ";
+		cin >> takt;
+	} while (takt < 1 || takt > 180);
+
+	do
+	{
+		//Stundenwert vorherige Schleife für Vergleich speichern
+		letzte = stunden;
+		//aktueller Stunden- und Minutenwert errechnen
+		stunden = vorher / 60;
+		minuten = vorher % 60;
+		//Zeilenumsprung bei Wechsel
+		if (letzte != stunden)
+		{
+			cout << endl;
+		}
+
+		cout << stunden << ":" << minuten << " ";
+
+		//Minutenwert um Taktzeit erhöhen
+		vorher += takt;
+
+	} while (vorher < 1440);
+
+	cout << endl;
+	
+	system("PAUSE");
+	return 0;
+}
