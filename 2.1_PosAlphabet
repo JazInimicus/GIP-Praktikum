@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char input = '0';
+
+	cout << "Bitte geben Sie den Buchstaben ein: ? ";
+	cin >> input;
+
+	cout << "Der Buchstabe" << input << "hat die Position " << int(input) - int('a') + 1 << " im Alphabet." << endl;
+	//a hat in ASCII den Wert 97, also 96 immer abziehen um Position zu ermitteln.
+
+	system("PAUSE");
+	return 0;
+}
