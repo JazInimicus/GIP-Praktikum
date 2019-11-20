@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int zahlen = 0, gross = 0, klein = 0, position1 = 0, position2 = 0;
+
+	cout << "Bitte geben Sie die 1. Zahl ein: ";
+	cin >> zahlen;
+
+	gross = zahlen;
+	klein = zahlen;
+	position1 = 1;
+	position2 = 1;
+
+	for (int z = 2; z <= 5; z++)
+	{
+		cout << "Bitte geben Sie die " << z << ". Zahl ein: ";
+		cin >> zahlen;
+
+		if (zahlen >= gross)
+		{
+			gross = zahlen;
+			position1 = z;
+		}
+		else if (zahlen <= klein)
+		{
+			klein = zahlen;
+			position2 = z;
+		}
+	}
+
+	cout << "Die " << position2 << ". Zahl war die kleinste der eingegebenen Zahlen und lautet: " << klein << endl;
+	cout << "Die " << position1 << ". Zahl war die groesste der eingegeben Zahlen und lautet: " << gross << endl;
+
+	system("PAUSE");
+	return 0;
+
+} 
