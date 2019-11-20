@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int eingabejahr = 0, eingabejahr2 = 0, eingabemonat = 0, eingabemonat2 = 0, eingabetag = 0, eingabetag2 = 0 ;
+
+	cout << "Bitte geben Sie den Tag des ersten Datums ein: ";
+	cin >> eingabetag;
+	cout << "Bitte geben Sie den Monat des ersten Datums ein: ";
+	cin >> eingabemonat;
+	cout << "Bitte geben Sie das Jahr des ersten Datums ein: ";
+	cin >> eingabejahr;
+
+	cout << "Bitte geben Sie den Tag des zweiten Datums ein: ";
+	cin >> eingabetag2;
+	cout << "Bitte geben Sie den Monat des zweiten Datums ein: ";
+	cin >> eingabemonat2;
+	cout << "Bitte geben Sie das Jahr des zweiten Datums ein: ";
+	cin >> eingabejahr2;
+
+		//Jahre
+
+		if (eingabejahr > eingabejahr2)
+		{
+			cout << "Das zweite Datum liegt vor dem ersten.";
+		}
+		else if (eingabejahr < eingabejahr2)
+		{
+			cout << "Das erste Datum liegt vor dem zweiten.";
+		}
+		else if (eingabejahr == eingabejahr2)
+
+		{
+			//Monate
+			if (eingabemonat > eingabemonat2)
+			{
+				cout << "Das zweite Datum liegt vor dem ersten.";
+			}
+			else if (eingabemonat < eingabemonat2)
+			{
+				cout << "Das erste Datum liegt vor dem zweiten.";
+			}
+			else if (eingabemonat == eingabemonat2)
+
+			{
+
+				//Tage
+				if (eingabetag > eingabetag2)
+				{
+					cout << "Das zweite Datum liegt vor dem ersten.";
+				}
+				else if (eingabetag < eingabetag2)
+				{
+					cout << "Das erste Datum liegt vor dem zweiten.";
+				}
+				else if (eingabetag == eingabetag2)
+				{
+					cout << "Beide Datumseingaben sind gleich.";
+				}
+			}
+		}
+			
+		cout << endl;
+
+	system("PAUSE");
+	return 0;
+}
