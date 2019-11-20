@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	string input;
+	string output;
+	int vs = 0;
+	
+	cout << "Bitte geben Sie den zu verschluesselnden Text ein: ";
+	getline(cin, input);
+	cout << "Bitte geben Sie die Anzahl der Verschiebepositionen ein (in ganzen Zahlen): ";
+	cin >> vs;
+	vs = vs % 26;
+
+	for (int i = 0; i < input.length(); i++)
+	{
+		int ascii = int(input.at(i)); //ascii wird gleich der Position von input(i)
+
+		if (ascii >= int('a') && ascii <= int('z'))
+		{
+			ascii += vs;
+
+			if (ascii > int('z'))
+			{
+				ascii -= 26;
+			}
+		}
+		else if (ascii >= int('A') && ascii <= int('Z'))
+		{
+			ascii += vs;
+
+			if (ascii > int('Z'))
+			{
+				ascii -= 26;
+			}
+		}
+
+		output = output + char(ascii);
+	}
+
+	cout << output << endl;
+
+	system("PAUSE");
+	return 0;
+
+}
