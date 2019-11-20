@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	int sudoku[9][9] = { 0 };
+	string eingabe[11];
+
+	cout << "Bitte geben Sie das Sudoku ein: " << endl;
+
+	for (int i = 0; i < 11; i++) //Eingabe des Sudokus. Maximal 11 Reihen. Zur Vereinfachung Sudoku von unten nehmen
+	{
+		getline(cin, eingabe[i]);
+	}
+
+	//Konvertierung 
+	int kon = 0;
+	for (int i = 0, y = 0; i < 11; i++)  //Zeilen
+	{
+		if (i == 3 || i == 7) continue; //ansonsten wird in den nächsten Zeilen immer 0 angezeigt
+
+		for (int j = 0, x = 0; j < eingabe[i].length(); j++) //j darf nicht länger als die gesamte Zeile i sein | Spalten
+		{
+			kon = int(eingabe[i].at(j) - '0'); //z.B. 9 ASCII Wert 57 - 48(ASCII 0) = (int) 9 || j geht die Positionen durch
+			if (kon >= 1 && kon <= 9) //Wertebereich
+			{
+				sudoku[y][x] = kon; //damit kon wieder frei ist, für den nächsten Durchlauf, in sudoku einspeichern
+				x++; //Nächste Position zum Speichern von der Spalte
+			}
+		}
+		y++; //Nächste Zeile
+	}
+
+	//Ausgabe
+	cout << endl << "Das Sudoku lautet: " << endl;
+
+	for (int y = 0; y < 9; y++) 
+	{
+		for (int x = 0; x < 9; x++)
+		{
+			cout << ";" << sudoku[y][x]; //nach jeder Zahl ein Semikolon
+
+			if ((x + 1) % 3 == 0 && x < 8) //Wenn die Zahl 0 ergibt, dann der Trenner bzw was vorher | war
+			{
+				cout << ";//";
+			}
+		}
+
+		if ((y + 1) % 3 == 0 && y < 8) //Wenn die Zahl 0 ergibt, dann unterer Trenner bzw was vorher war 
+		{
+			cout << endl << "=======//=======//=======";
+		}
+
+		cout << endl;
+	}
+
+
+	system("PAUSE");
+	return 0;
+}
+
+
+/*
+.5.1.4.|.8.6.9.|.7.2.3
+.8.7.2.|.3.4.5.|.6.1.9
+.9.6.3.|.2.1.7.|.5.4.8
+-------|-------|-------
+.6.2.8.|.1.3.4.|.9.5.7
+.1.9.7.|.6.5.2.|.8.3.4
+.4.3.5.|.7.9.8.|.1.6.2
+-------|-------|-------
+.2.4.6.|.9.7.1.|.3.8.5
+.7.5.1.|.4.8.3.|.2.9.6
+.3.8.9.|.5.2.6.|.4.7.1 
+
+.9.4.6.|.3.1.8.|.2.7.5
+.1.2.3.|.7.5.6.|.9.4.8
+.5.8.7.|.2.4.9.|.6.3.1
+-------|-------|-------
+.8.1.4.|.9.2.5.|.7.6.3
+.2.7.5.|.1.6.3.|.8.9.4
+.6.3.9.|.8.7.4.|.1.5.2
+-------|-------|-------
+.3.6.8.|.5.9.2.|.4.1.7
+.4.5.1.|.6.8.7.|.3.2.9
+.7.9.2.|.4.3.1.|.5.8.6
+*/
