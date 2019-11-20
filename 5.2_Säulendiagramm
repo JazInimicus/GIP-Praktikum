@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	int eingabe[5];
+	for (int i = 0; i < 5; i++) //Eingabe der 5 Zahlen. Darf bis maximal 5 hochzählen 
+	{
+		do
+		{
+			cout << "Bitte geben Sie die " << i + 1 << ". Zahl ein: "; //Da i bei 0 anfängt, immer um +1 erhöhen, damit man die richtige Zahl bekommt
+			cin >> eingabe[i];
+		} while (eingabe[i] < 1 || eingabe[i] > 9); //Sichergehen, dass auch nur Werte zwischen 1 und 9 eingegeben werden, ansonsten wiederholen
+	} 
+
+	for (int ver = 9; ver > 0; ver--)
+	{
+		cout << ver; //Linke Seite. Soll von oben nach unten zählen, also von 9 bis 1
+
+		for (int x = 0; x < 5; x++) //Schleife für Ausgabe der Zeichen und da man nur 5 Spalten hat, darf man nur bis 5 hochzählen
+		{
+			if (eingabe[x] == ver) { cout << '*';} //Wenn Eingabe, Ver entspricht, dann soll das Sternchen 
+			else if (eingabe[x] > ver) { cout << '+';} //Wenn Eingabe höher als Ver, dann Plus
+			else { cout << '.';} //Ansonsten einfach nur Punkte ausgeben
+		}
+		cout << endl; //Zeilenumbruch, nach dem Durchgang der Zeichen
+	}
+
+
+	cout << " 12345" << endl;
+
+	system("PAUSE");
+	return 0;
+}
