@@ -2,6 +2,7 @@
 #include <string>
 #include "Prototypen.h"
 
+void parse_ausdruck(std::string& input, int& pos);
 
 void parse_operand(std::string& input, int& pos)
 {
