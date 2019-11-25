@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include "Prototypen.h"
+
+void parse_ausdruck(std::string& input, int& pos)
+{
+	std::cout << "Betrete parse_ausdruck()" << std::endl;
+
+	parse_term(input, pos);
+
+	while (expect('U', input, pos) || expect('O', input, pos))
+	{
+		if (expect('U', input, pos))
+		{
+			std::cout << "Betrete parse_ausdruck(): U Fall" << std::endl;
+			match('U', input, pos);
+			parse_term(input, pos);
+			std::cout << "Verlasse parse_ausdruck(): U Fall" << std::endl;
+		}
+		else if (expect('O', input, pos))
+		{
+			std::cout << "Betrete parse_ausdruck(): O Fall" << std::endl;
+			match('O', input, pos);
+			parse_term(input, pos);
+			std::cout << "Verlasse parse_ausdruck(): O Fall" << std::endl;
+		}
+	}
+
+	std::cout << "Verlasse parse_ausdruck()" << std::endl;
+	return;
+}
