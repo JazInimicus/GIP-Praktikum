@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include "Prototypen.h"
+
+void parse_term(std::string& input, int& pos)
+{
+	std::cout << "Betrete parse_term()" << std::endl;
+
+	parse_operand(input, pos);
+
+	while (expect('>', input, pos) || expect('<', input, pos))
+	{
+		if (expect('>', input, pos))
+		{
+			std::cout << "Betrete parse_term(): > Fall" << std::endl;
+			match('>', input, pos);
+			parse_operand(input, pos);
+			std::cout << "Verlasse parse_term(): > Fall" << std::endl;
+		}
+		else if (expect('<', input, pos))
+		{
+			std::cout << "Betrete parse_term(): < Fall" << std::endl;
+			match('<', input, pos);
+			parse_operand(input, pos);
+			std::cout << "Verlasse parse_term(): < Fall" << std::endl;
+		}
+	}
+
+	std::cout << "Verlasse parse_term()" << std::endl;
+	return;
+}
