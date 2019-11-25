@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string>
+#include "Prototypen.h"
+
+void parse_gesamtausdruck(std::string& input, int& pos)
+{
+	std::cout << "Betrete parse_gesamtausdruck()" << std::endl;
+	parse_ausdruck(input, pos);
+
+	match('.', input, pos);
+
+	std::cout << "Verlasse parse_gesamtausdruck()" << std::endl;
+	return;
+}
