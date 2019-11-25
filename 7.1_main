@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+#include "Prototypen.h"
+
+int main()
+{
+	int pos = 0;
+	std::string input = "";
+	std::cout << "Bitte geben Sie die Zeichenkette ein: ";
+	getline(std::cin, input);
+	parse_gesamtausdruck(input, pos); //greift auf parse_gesamtausdruck zurück
+	if (pos != input.length()) 
+	{
+		std::cout << "ERROR! Noch Input-Zeichen uebrig." << std::endl;
+	}
+	system("PAUSE");
+	return 0;
+}
