@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include "Prototypen.h"
+
+void match(char c, std::string& input, int& pos)
+{
+	std::cout << "Betrete match() fuer das Zeichen " << c << std::endl;
+	if (unsigned(pos) >= input.length())
+	{
+		std::cout << "Input-Zeichenkette zu kurz. "
+			<< "Erwarte noch das Zeichen " << c << std::endl;
+		std::cout << "Verlasse match(): " << std::endl;
+		return;
+	}
+	if (input.at(pos) != c)
+	{
+		std::cout << "Fehler: an Position "
+			<< pos << " erwarte "
+			<< c << " und sehe " << input.at(pos) << std::endl;
+		std::cout << "Verlasse match(): " << std::endl;
+		return;
+	}
+	pos++;
+	std::cout << "Zeichen " << c << " konsumiert.\n";
+	std::cout << "Verlasse match() fuer das Zeichen "
+		<< c << std::endl;
+}
