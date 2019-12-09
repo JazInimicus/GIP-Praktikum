@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include "person.h"
+
+using namespace std;
+
+string br(string s)
+{
+	return s += "<br/>";
+}
+
+string b(string s)
+{
+	string result = "<b>";
+	result += s;
+	return result += "</b>";
+}
+
+string ersetze(string s, char vergleich, string ersatz)
+{
+	string result = "";
+	for (unsigned int i = 0; i < s.length(); i++)
+	{
+		if (s.at(i) == vergleich)
+		{
+			result += ersatz;
+		}
+		else
+		{
+			result += s.at(i);
+		}
+	}
+	return result;
+}
+
+
+
+int main()
+{
+	string eingabezeile = "", kurztext = "", langtext = "";
+	ifstream liste;
+	liste.open("personendaten.txt");
+
+
+	while (!liste.eof())
+	{
+		getline(liste, eingabezeile);
+		if (eingabezeile != "")
+		{
+			Person person = extrahiere_person(eingabezeile);
+			kurztext += br(b(person.nachname) + ", " + person.vorname) + "\n";
+			langtext += br(b(person.vorname + " " + person.nachname) + ", " + person.geburtsdatum) + "\n";
+		}
+	}
+	liste.close();
+
+	ifstream htmltmpl;
+	htmltmpl.open("webseite.html.tmpl");
+	ofstream ausgabe;
+	ausgabe.open("webseite.html");
+
+
+	while (!htmltmpl.eof())
+	{
+		getline(htmltmpl, eingabezeile);
+		eingabezeile = ersetze(eingabezeile, '%', kurztext);
+		eingabezeile = ersetze(eingabezeile, '$', langtext);
+		ausgabe << eingabezeile << "\n";
+	}
+	htmltmpl.close();
+	ausgabe.close();
+
+	return 0;
+}
