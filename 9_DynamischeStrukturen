@@ -1,0 +1,170 @@
+#include <iostream>
+using namespace std;
+
+struct TListenKnoten
+{
+	int data;
+	TListenKnoten* next;
+	TListenKnoten* prev;
+};
+
+void hinten_anfuegen ( TListenKnoten * &anker, const int wert)
+{
+	TListenKnoten* neuer_eintrag = new TListenKnoten;
+	neuer_eintrag->data = wert;
+	neuer_eintrag->next = nullptr;
+	neuer_eintrag->prev = nullptr; //Standartwert der geändert wird, wenn es einen Vorgänger gibt
+
+	if (anker == nullptr) { anker = neuer_eintrag; }
+	else
+	{
+		TListenKnoten* ptr = anker;
+		while (ptr->next != nullptr) { ptr = ptr->next; }
+
+		neuer_eintrag->prev = ptr; //Letzter EIntrag Vorgänger des Neuen
+		ptr->next = neuer_eintrag;
+	}
+}
+
+void liste_ausgeben(TListenKnoten* anker)
+{
+	if (anker == nullptr) { cout << "Leere Liste." << endl; }
+	else
+	{
+		cout << "[ ";
+		TListenKnoten* ptr = anker;
+		
+		do
+		{
+			cout << ptr->data;
+			if (ptr->next != nullptr) { cout << " , "; }
+			else { cout << " "; }
+			ptr = ptr->next;
+		} while (ptr != nullptr);
+		cout << "]" << endl;
+	}
+}
+
+void liste_ausgeben_rueckwaerts(TListenKnoten* anker)
+{
+	if (anker == nullptr) { cout << "Leere Liste." << endl; }
+	else
+	{
+		cout << "[ ";
+		TListenKnoten* ptr = anker;
+		while (ptr->next != nullptr) { ptr = ptr->next; } //Bekomme letzten Eintrag
+
+		do
+		{
+			cout << ptr->data;
+			if (ptr->prev != nullptr) { cout << " , "; } //Jetzt auf den Vorgänger prüfen
+			else { cout << " "; }
+
+			ptr = ptr->prev; //Jetzt auf den Vorgänger setzen
+		} while (ptr != nullptr);
+		cout << "]" << endl;
+	}
+}
+
+void einfuegen(TListenKnoten*& anker, int wert_neu, int vor_wert)
+{
+	TListenKnoten* neuer_eintrag = new TListenKnoten;
+	neuer_eintrag->data = wert_neu;
+	neuer_eintrag->next = nullptr;
+	neuer_eintrag->prev = nullptr;
+
+	if (anker == nullptr) { anker = neuer_eintrag; }
+	else
+	{
+		TListenKnoten* ptr = anker;
+		while (ptr->next != nullptr)
+		{
+			if (ptr->data == vor_wert) { break; } //Abbrechen, wenn Wert gefunden
+			ptr = ptr->next;
+		}
+
+		if (ptr->next == nullptr) { hinten_anfuegen(ptr, wert_neu); }
+		else
+		{
+			neuer_eintrag->next = ptr; //Neuer zeigt auf den Alten
+			neuer_eintrag->prev = ptr->prev; //Neuer zeugt auf den Vorgänger des Alten
+
+			//Wenn es einen Vorgänger gibt
+			if (ptr->prev != nullptr) { ptr->prev->next = neuer_eintrag; } //Vorgänger zeigt auf den Neuen
+			else { anker = neuer_eintrag; } //Keinen Vorgänger -> Neuer Knoten ist der Anfang
+
+			ptr->prev = neuer_eintrag; //Nachfolger zeigt auf den Neuen
+		}
+	}
+}
+
+void aus_liste_loeschen(TListenKnoten*& anker, int wert)
+{
+	TListenKnoten* ptr = anker;
+
+	while (ptr->next != 0 && ptr->data != wert)
+	{
+		ptr = ptr->next;
+	}
+	//Der Vorgänger muss auf den Nachfolger zeigen
+	ptr->prev->next = ptr->next;
+	//Der Nachfolger muss auf den Vorgänger zeigen
+	ptr->next->prev = ptr->prev;
+	//Das aktuelle Element löschen
+	delete ptr;
+}
+
+void liste_loeschen(TListenKnoten*& anker)
+{
+	while (anker != 0)
+	{
+		TListenKnoten* ptr = anker;
+		anker = anker->next;
+		delete ptr;
+	}
+}
+
+int main()
+{
+	const int laenge = 10;
+	TListenKnoten* anker = nullptr;
+	
+	liste_ausgeben(anker);
+	liste_ausgeben_rueckwaerts(anker);
+	liste_loeschen(anker);
+
+	hinten_anfuegen(anker, 77);
+	hinten_anfuegen(anker, 88);
+	hinten_anfuegen(anker, 99);
+	liste_ausgeben(anker);
+	liste_ausgeben_rueckwaerts(anker);
+
+	liste_loeschen(anker);
+	liste_ausgeben(anker);
+	liste_ausgeben_rueckwaerts(anker);
+
+	for (int i = 0; i < laenge; i++) einfuegen(anker, i * i, 9999);
+	{
+		liste_ausgeben(anker);
+		liste_ausgeben_rueckwaerts(anker);
+
+		einfuegen(anker, -1, 0);
+		einfuegen(anker, 24, 25);
+		einfuegen(anker, 80, 81);
+		einfuegen(anker, 99, 9999);
+		liste_ausgeben(anker);
+		liste_ausgeben_rueckwaerts(anker);
+
+		aus_liste_loeschen(anker, 24);
+		aus_liste_loeschen(anker, 80);
+		liste_ausgeben(anker);
+		liste_ausgeben_rueckwaerts(anker);
+
+		liste_loeschen(anker);
+		liste_ausgeben(anker);
+		liste_ausgeben_rueckwaerts(anker);
+	}
+
+	system("PAUSE");
+	return 0;
+}
