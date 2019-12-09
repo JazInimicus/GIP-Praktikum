@@ -1,9 +1,58 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "person.h"
+#include "prototypen.h"
 
 using namespace std;
+
+Person extrahiere_person(std::string eingabezeile)
+{
+	Person p;
+	std::string rest;
+	spalte_ab_erstem(eingabezeile, ',', p.nachname, rest);
+	spalte_ab_erstem(rest, ',', p.vorname, p.geburtsdatum);
+	p.nachname = trimme(p.nachname);
+	p.vorname = trimme(p.vorname);
+	p.geburtsdatum = trimme(p.geburtsdatum);
+	return p;
+}
+
+void spalte_ab_erstem(std::string eingabe, char zeichen, std::string& erster_teil, std::string& zweiter_teil)
+{
+	int i = 0;
+	for (; i < eingabe.length(); i++)
+	{
+		if (eingabe.at(i) == zeichen) { i++; break; }
+		else erster_teil += eingabe.at(i);
+	}
+
+	for (; i < eingabe.length(); i++)
+	{
+		zweiter_teil += eingabe.at(i);
+	}
+}
+
+std::string trimme(std::string s)
+{
+	std::string resultat = "";
+	int anfang = 0;
+	int end = 0;
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (s.at(i) != ' ') { break; }
+		anfang++;
+	}
+	for (int i = s.length() - 1; i >= 0; i--)
+	{
+		if (s.at(i) != ' ') { break; }
+		end++;
+	}
+	for (int i = anfang; i < s.length() - end; i++)
+	{
+		resultat += s.at(i);
+	}
+	return resultat;
+}
 
 string br(string s)
 {
