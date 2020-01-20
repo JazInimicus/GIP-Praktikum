@@ -35,7 +35,7 @@ void MyString2::delete_internal()
 
 CharListenKnoten* MyString2::deep_copy_internal() const
 {
-	if (this->anker == nullptr) //da wir sonnst ein CharListenknoten erstellen würden, mit leeren Datenwert ('/0')
+	if (this->anker == nullptr) //da wir sonnst ein CharListenknoten erstellen wÃ¼rden, mit leeren Datenwert ('/0')
 		return nullptr;
 	CharListenKnoten* new_anker = new CharListenKnoten(this->at(0));
 	for (int i = 1; i < this->length(); i++)
@@ -57,7 +57,7 @@ MyString2::MyString2()
 }
 
 MyString2::MyString2(std::string input)
-{//leeres Input überprüfen
+{//leeres Input Ã¼berprÃ¼fen
 	if (input != "")
 	{
 		anker = new CharListenKnoten(input[0]);
