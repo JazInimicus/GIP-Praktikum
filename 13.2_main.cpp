@@ -24,9 +24,9 @@ int main(int argc, char* const argv[])
 	MyString2 text2 = text, text3;
 	text3 = text2;
 
-	// Achtung: Bei leerer Eingabe würde eingabe_text.length() zu 0   
+	// Achtung: Bei leerer Eingabe wÃ¼rde eingabe_text.length() zu 0   
 	// und dadurch wird bei Verwendung von "unsigned int"   
-	// der Wert .length() - 1 zum größten "unsigned int" Wert!   
+	// der Wert .length() - 1 zum grÃ¶ÃŸten "unsigned int" Wert!   
 	// Daher z.B. wie folgt programmieren ...    
 	for (unsigned int pos = text3.length() - 1;
 		pos >= 0 && pos < text3.length();
@@ -36,10 +36,10 @@ int main(int argc, char* const argv[])
 	// Alternativ (mit int):    
 	// for (int pos = text3.length() - 1; pos >= 0 ; pos--) 
 	//     ergebnis += text3.at(pos); 
-	// Falsch wäre, mit “unsigned” wie folgt zu programmieren     
-	// (nach dem Wert 0 wird pos nicht zu -1, sondern zum größten   
+	// Falsch wÃ¤re, mit â€œunsignedâ€ wie folgt zu programmieren     
+	// (nach dem Wert 0 wird pos nicht zu -1, sondern zum grÃ¶ÃŸten   
 	//  unsigned int Wert. Die Abbruchbedingung der Schleife geht   
-	//  hingegen davon aus, dass pos irgendwann negativ würde!):  
+	//  hingegen davon aus, dass pos irgendwann negativ wÃ¼rde!):  
 	// for (unsigned int pos = text3.length() - 1; pos >= 0 ; pos--)  
 	//     ergebnis += text3.at(pos); 
 
