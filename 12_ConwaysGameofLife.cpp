@@ -24,7 +24,7 @@ int main()
 		// Spielfeld anzeigen ...
 		// Ggfs gip_stop_updates();
 		// TO DO
-		gip_stop_updates(); //schaltet das Neuzeichnen nach jeder Bildschirm‰nderung aus
+		gip_stop_updates(); //schaltet das Neuzeichnen nach jeder Bildschirm√§nderung aus
 		gip_draw_rectangle(border, border, border + grid_size * box_size, border + grid_size * box_size, white);
 		for (int y = 0; y < grid_size; y++)
 		{
@@ -37,13 +37,13 @@ int main()
 				}
 			}
 		}
-		gip_start_updates(); //alle Bildschirm‰nderungen (auch nach stop) wieder anzeigen
+		gip_start_updates(); //alle Bildschirm√§nderungen (auch nach stop) wieder anzeigen
 		gip_sleep(3);
 
 		// Berechne das naechste Spielfeld ...
-		// Achtung; F¸r die Zelle (x,y) darf die Position (x,y) selbst *nicht*
+		// Achtung; F√ºr die Zelle (x,y) darf die Position (x,y) selbst *nicht*
 		// mit in die Betrachtungen einbezogen werden.
-		// Ausserdem darf bei zellen am rand nicht ¸ber den Rand hinausgegriffen
+		// Ausserdem darf bei zellen am rand nicht √ºber den Rand hinausgegriffen
 		// werden (diese Zellen haben entsprechend weniger Nachbarn) ...
 
 		// TO DO
