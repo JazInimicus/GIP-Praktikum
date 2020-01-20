@@ -26,5 +26,5 @@ public:
 	CharListenKnoten* get_anker(); //gibt den Anker zurueck
 	unsigned int length() const; //laenge des MyString2
 	char at(unsigned int pos) const; //wert an Position, wenn nicht vorhanden '\0'
-	std::string to_string(); //Rückgabe als String
+	std::string to_string(); //RÃ¼ckgabe als String
 };
